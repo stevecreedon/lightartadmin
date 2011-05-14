@@ -1,0 +1,23 @@
+<h1>Listing cost_types</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @cost_types.each do |cost_type| %>
+  <tr>
+    <td><%= cost_type.name %></td>
+    <td><%= link_to 'Show', cost_type %></td>
+    <td><%= link_to 'Edit', edit_cost_type_path(cost_type) %></td>
+    <td><%= link_to 'Destroy', cost_type, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Cost type', new_cost_type_path %>

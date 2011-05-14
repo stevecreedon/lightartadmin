@@ -1,0 +1,60 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Amount:</b>
+  <%= @cost.amount %>
+</p>
+
+<p>
+  <b>Vat:</b>
+  <%= @cost.vat %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @cost.description %>
+</p>
+
+<p>
+  <b>Reference:</b>
+  <%= @cost.reference %>
+</p>
+
+<p>
+  <b>Payment date:</b>
+  <%= @cost.payment_date %>
+</p>
+
+<p>
+  <b>Cost centre:</b>
+  <%= @cost.cost_centre_id %>
+</p>
+
+<p>
+  <b>Payer:</b>
+  <%= @cost.payer_id %>
+</p>
+
+<p>
+  <b>Payment type:</b>
+  <%= @cost.payment_type_id %>
+</p>
+
+<p>
+  <b>Cost type:</b>
+  <%= @cost.cost_type_id %>
+</p>
+
+<p>
+  <b>Company:</b>
+  <%= @cost.company_id %>
+</p>
+
+<p>
+  <b>Contact:</b>
+  <%= @cost.contact_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_cost_path(@cost) %> |
+<%= link_to 'Back', costs_path %>

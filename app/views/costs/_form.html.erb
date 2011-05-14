@@ -1,0 +1,61 @@
+<%= form_for(@cost) do |f| %>
+  <% if @cost.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@cost.errors.count, "error") %> prohibited this cost from being saved:</h2>
+
+      <ul>
+      <% @cost.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :amount %><br />
+    <%= f.text_field :amount %>
+  </div>
+  <div class="field">
+    <%= f.label :vat %><br />
+    <%= f.select :vat, vats %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </div>
+  <div class="field">
+    <%= f.label :reference %><br />
+    <%= f.text_field :reference %>
+  </div>
+  <div class="field">
+    <%= f.label :payment_date %><br />
+    <%= f.date_select :payment_date %>
+  </div>
+  <div class="field">
+    <%= f.label :cost_centre_id %><br />
+    <%= f.text_field :cost_centre_id %>
+  </div>
+  <div class="field">
+    <%= f.label :user_id %><br />
+    <%= f.select :user_id, User.all.collect{|user| [user.email, user.id]} %>
+  </div>
+  <div class="field">
+    <%= f.label :payment_type_id %><br />
+    <%= f.select :payment_type_id, PaymentType.all %>
+  </div>
+  <div class="field">
+    <%= f.label :cost_type_id %><br />
+    <%= f.select :cost_type_id, CostType.all %>
+  </div>
+  <div class="field">
+    <%= f.label :company_id %><br />
+    <%= f.select :company_id, Company.all %>
+  </div>
+  <div class="field">
+    <%= f.label :contact_id %><br />
+    <%= f.select :contact_id, Contact.all %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
