@@ -8,6 +8,19 @@
 </head>
 <body>
 
+<div id="navigation">
+	<h1>Light Art Costs</h1>
+	<ul>
+		<li><%= link_to 'home', root_path %></li> |
+		<li><%= link_to 'costs', costs_path %></li> |
+		<li><%= link_to 'cost centres', cost_centres_path %></li> |
+		<li><%= link_to 'cost types', cost_types_path %></li> |
+		<li><%= link_to 'payment types', payment_types_path %></li> |
+		<li><%= link_to 'companies', companies_path %></li> |
+		<li><%= link_to 'contacts', contacts_path %></li>
+	</ul>	
+</div>	
+
 <%= yield %>
 
 </body>
