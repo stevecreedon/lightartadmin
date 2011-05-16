@@ -3,10 +3,10 @@ require 'spec_helper'
 describe "cost_types/index.html.erb" do
   before(:each) do
     assign(:cost_types, [
-      stub_model(CostType,
+      Factory(:cost_type,
         :name => "Name"
       ),
-      stub_model(CostType,
+      Factory(:cost_type,
         :name => "Name"
       )
     ])

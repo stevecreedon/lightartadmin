@@ -81,14 +81,14 @@ describe ContactsController do
     describe "with invalid params" do
       it "assigns a newly created but unsaved contact as @contact" do
         # Trigger the behavior that occurs when invalid params are submitted
-        Contact.any_instance.stub(:save).and_return(false)
+        Contact.any_instance.stubs(:save).returns(false)
         post :create, :contact => {}
         assigns(:contact).should be_a_new(Contact)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
-        Contact.any_instance.stub(:save).and_return(false)
+        Contact.any_instance.stubs(:save).returns(false)
         post :create, :contact => {}
         response.should render_template("new")
       end
@@ -124,7 +124,7 @@ describe ContactsController do
       it "assigns the contact as @contact" do
         contact = Contact.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
-        Contact.any_instance.stub(:save).and_return(false)
+        Contact.any_instance.stubs(:save).returns(false)
         put :update, :id => contact.id.to_s, :contact => {}
         assigns(:contact).should eq(contact)
       end
@@ -132,7 +132,7 @@ describe ContactsController do
       it "re-renders the 'edit' template" do
         contact = Contact.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
-        Contact.any_instance.stub(:save).and_return(false)
+        Contact.any_instance.stubs(:save).returns(false)
         put :update, :id => contact.id.to_s, :contact => {}
         response.should render_template("edit")
       end

@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "cost_centres/show.html.erb" do
   before(:each) do
-    @cost_centre = assign(:cost_centre, stub_model(CostCentre,
+    @cost_centre = assign(:cost_centre, Factory(:cost_centre,
       :name => "Name"
     ))
   end

@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "contacts/edit.html.erb" do
   before(:each) do
-    @contact = assign(:contact, stub_model(Contact,
+    @contact = assign(:contact, Factory(:contact,
       :name => "MyString"
     ))
   end

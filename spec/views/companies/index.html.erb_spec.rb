@@ -3,10 +3,10 @@ require 'spec_helper'
 describe "companies/index.html.erb" do
   before(:each) do
     assign(:companies, [
-      stub_model(Company,
+      Factory(:company,
         :name => "Name"
       ),
-      stub_model(Company,
+      Factory(:company,
         :name => "Name"
       )
     ])

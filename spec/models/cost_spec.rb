@@ -11,17 +11,30 @@ describe Cost do
       cost.amount.should == 117.5   
     end
     
-    it 'should remove vat when vat_inclusive is true or \'true\'' do
+    it 'should remove vat when vat_inclusive is true' do
       
       cost = Factory.build(:cost, :amount => 117.5, :vat => 17.5)
       cost.vat_inclusive = true
       cost.valid?
       cost.amount.should == BigDecimal.new('100.0')
+          
+    end
+    
+    it 'should remove vat when vat_inclusive is \'true\'' do
       
       cost = Factory.build(:cost, :amount => 117.5, :vat => 17.5)
       cost.vat_inclusive = 'true'
       cost.valid?
       cost.amount.should == BigDecimal.new('100.0')
+      
+    end
+    
+    it 'should remove no vat when vat is 0.0' do
+      
+      cost = Factory.build(:cost, :amount => 117.5, :vat => 0.0)
+      cost.vat_inclusive = 'true'
+      cost.valid?
+      cost.amount.should == BigDecimal.new('117.5')
       
     end
     
@@ -32,7 +45,7 @@ describe Cost do
     it 'should not be valid when the cost is unpopulated' do
       cost = Cost.new
       cost.valid?.should be_false
-      cost.errors.size.should == 11
+      cost.errors.size.should == 13
       cost.errors[:description].should == ["can't be blank"]
       cost.errors[:reference].should == ["can't be blank"]
       cost.errors[:payment_date].should == ["can't be blank"]
@@ -40,8 +53,9 @@ describe Cost do
       cost.errors[:cost_centre].should == ["can't be blank"]
       cost.errors[:cost_type].should == ["can't be blank"]
       cost.errors[:description].should == ["can't be blank"]
-      cost.errors[:amount].should == ["can't be blank"]
-      cost.errors[:vat].should == ["can't be blank"]
+      cost.errors[:project].should == ["can't be blank"]
+      cost.errors[:amount].should == ["is not a number"]
+      cost.errors[:vat].should == ["is not a number"]
       cost.errors[:company].should == ["can't be blank if contact is blank"]
       cost.errors[:contact].should == ["can't be blank if company is blank"]
     end
@@ -79,7 +93,7 @@ end
 #  payment_date    :date
 #  cost_centre_id  :integer
 #  payer_id        :integer
-#  payment_type_id :integer
+#  payment_method_id :integer
 #  cost_type_id    :integer
 #  company_id      :integer
 #  contact_id      :integer

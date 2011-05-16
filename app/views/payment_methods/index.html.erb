@@ -1,0 +1,25 @@
+
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>User</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @payment_methods.each do |payment_method| %>
+  <tr>
+    <td><%= payment_method.name %></td>
+    <td><%= payment_method.user_id %></td>
+    <td><%= link_to 'Show', payment_method %></td>
+    <td><%= link_to 'Edit', edit_payment_method_path(payment_method) %></td>
+    <td><%= link_to 'Destroy', payment_method, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Payment type', new_payment_method_path %>

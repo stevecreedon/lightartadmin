@@ -2,6 +2,14 @@
 <html>
 <head>
   <title>Lightartadmin</title>
+
+  <%= stylesheet_link_tag "blueprint/screen.css", :media => "screen, projection" %>
+  <%= stylesheet_link_tag "blueprint/print.css", :media => "print" %>
+
+<!--[if lt IE 8]>
+  <%= stylesheet_link_tag "blueprint/screen.css", :media => "screen, projection" %>
+<![endif]--></code></pre>
+
   <%= stylesheet_link_tag :all %>
   <%= javascript_include_tag :defaults %>
   <%= csrf_meta_tag %>
@@ -14,14 +22,17 @@
 		<li><%= link_to 'home', root_path %></li> |
 		<li><%= link_to 'costs', costs_path %></li> |
 		<li><%= link_to 'cost centres', cost_centres_path %></li> |
+		<li><%= link_to 'projects', projects_path %></li> |
 		<li><%= link_to 'cost types', cost_types_path %></li> |
-		<li><%= link_to 'payment types', payment_types_path %></li> |
+		<li><%= link_to 'payment methods', payment_methods_path %></li> |
 		<li><%= link_to 'companies', companies_path %></li> |
 		<li><%= link_to 'contacts', contacts_path %></li>
 	</ul>	
 </div>	
-
-<%= yield %>
+<h1 class="page_title"><%= page_title %></h1>
+<div class="<%= container %>">
+ <%= yield %>
+</div>
 
 </body>
 </html>

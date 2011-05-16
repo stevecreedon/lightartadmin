@@ -1,11 +1,13 @@
 Lightartadmin::Application.routes.draw do
+  resources :projects
+
   resources :contacts
 
   devise_for :users
 
   resources :cost_types
 
-  resources :payment_types
+  resources :payment_methods
 
   resources :cost_centres
 

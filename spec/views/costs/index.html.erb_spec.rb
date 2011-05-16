@@ -3,7 +3,7 @@ require 'spec_helper'
 describe "costs/index.html.erb" do
   before(:each) do
     assign(:costs, [
-      stub_model(Cost,
+      Factory(:cost,
         :amount => "",
         :vat => "",
         :description => "",
@@ -11,12 +11,12 @@ describe "costs/index.html.erb" do
         :payment_date => "",
         :cost_centre_id => "",
         :payer_id => "",
-        :payment_type_id => "",
+        :payment_method_id => "",
         :cost_type_id => "",
         :company_id => "",
         :contact_id => 1
       ),
-      stub_model(Cost,
+      Factory(:cost,
         :amount => "",
         :vat => "",
         :description => "",
@@ -24,7 +24,7 @@ describe "costs/index.html.erb" do
         :payment_date => "",
         :cost_centre_id => "",
         :payer_id => "",
-        :payment_type_id => "",
+        :payment_method_id => "",
         :cost_type_id => "",
         :company_id => "",
         :contact_id => 1

@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "companies/show.html.erb" do
   before(:each) do
-    @company = assign(:company, stub_model(Company,
+    @company = assign(:company, Factory(:company,
       :name => "Name"
     ))
   end

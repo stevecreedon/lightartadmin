@@ -1,5 +1,3 @@
-<h1>Listing costs</h1>
-
 <table>
   <tr>
     <th>Amount</th>
@@ -8,7 +6,8 @@
     <th>Reference</th>
     <th>Payment date</th>
     <th>Cost centre</th>
-    <th>Payer</th>
+    <th>Project</th>
+    <th>User</th>
     <th>Payment type</th>
     <th>Cost type</th>
     <th>Company</th>
@@ -20,17 +19,18 @@
 
 <% @costs.each do |cost| %>
   <tr>
-    <td><%= cost.amount %></td>
-    <td><%= cost.vat %></td>
+    <td><%= number_to_currency(cost.amount, :unit => '&pound;') %></td>
+    <td><%= cost.vat.round(2) %>%</td>
     <td><%= cost.description %></td>
     <td><%= cost.reference %></td>
     <td><%= cost.payment_date %></td>
-    <td><%= cost.cost_centre_id %></td>
-    <td><%= cost.payer_id %></td>
-    <td><%= cost.payment_type_id %></td>
-    <td><%= cost.cost_type_id %></td>
-    <td><%= cost.company_id %></td>
-    <td><%= cost.contact_id %></td>
+    <td><%= cost.cost_centre.name %></td>
+    <td><%= cost.project.name if cost.project %></td>
+    <td><%= cost.user.email %></td>
+    <td><%= cost.payment_method.name %></td>
+    <td><%= cost.cost_type.name %></td>
+    <td><%= cost.company.name if cost.company %></td>
+    <td><%= cost.contact.name if cost.contact %></td>
     <td><%= link_to 'Show', cost %></td>
     <td><%= link_to 'Edit', edit_cost_path(cost) %></td>
     <td><%= link_to 'Destroy', cost, :confirm => 'Are you sure?', :method => :delete %></td>

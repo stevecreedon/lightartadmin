@@ -1,12 +1,12 @@
 class User < ActiveRecord::Base
   
-  has_many :payment_types
+  has_many :payment_methods
   has_many :costs
   
   
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
+  devise :database_authenticatable,
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model

@@ -29,7 +29,7 @@ describe CostsController do
 
   describe "GET index" do
     it "assigns all costs as @costs" do
-      cost = Cost.create! valid_attributes
+      cost = Factory(:cost)
       get :index
       assigns(:costs).should eq([cost])
     end
@@ -37,7 +37,7 @@ describe CostsController do
 
   describe "GET show" do
     it "assigns the requested cost as @cost" do
-      cost = Cost.create! valid_attributes
+      cost = Factory(:cost)
       get :show, :id => cost.id.to_s
       assigns(:cost).should eq(cost)
     end
@@ -52,7 +52,7 @@ describe CostsController do
 
   describe "GET edit" do
     it "assigns the requested cost as @cost" do
-      cost = Cost.create! valid_attributes
+      cost = Factory(:cost)
       get :edit, :id => cost.id.to_s
       assigns(:cost).should eq(cost)
     end
@@ -67,7 +67,7 @@ describe CostsController do
       end
 
       it "assigns a newly created cost as @cost" do
-        post :create, :cost => valid_attributes
+        post :create, :cost => Factory.build(:cost).attributes
         assigns(:cost).should be_a(Cost)
         assigns(:cost).should be_persisted
       end
@@ -81,14 +81,14 @@ describe CostsController do
     describe "with invalid params" do
       it "assigns a newly created but unsaved cost as @cost" do
         # Trigger the behavior that occurs when invalid params are submitted
-        Cost.any_instance.stub(:save).and_return(false)
+        Cost.any_instance.stubs(:save).returns(false)
         post :create, :cost => {}
         assigns(:cost).should be_a_new(Cost)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
-        Cost.any_instance.stub(:save).and_return(false)
+        Cost.any_instance.stubs(:save).returns(false)
         post :create, :cost => {}
         response.should render_template("new")
       end
@@ -124,7 +124,7 @@ describe CostsController do
       it "assigns the cost as @cost" do
         cost = Cost.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
-        Cost.any_instance.stub(:save).and_return(false)
+        Cost.any_instance.stubs(:save).returns(false)
         put :update, :id => cost.id.to_s, :cost => {}
         assigns(:cost).should eq(cost)
       end
@@ -132,7 +132,7 @@ describe CostsController do
       it "re-renders the 'edit' template" do
         cost = Cost.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
-        Cost.any_instance.stub(:save).and_return(false)
+        Cost.any_instance.stubs(:save).returns(false)
         put :update, :id => cost.id.to_s, :cost => {}
         response.should render_template("edit")
       end

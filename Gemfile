@@ -20,6 +20,7 @@ gem 'capistrano'
 # Bundle the extra gems:
 gem 'devise'
 gem "jquery-rails", '1.0.1'
+gem 'formtastic'
 
 
 # Bundle gems for the local environment. Make sure to

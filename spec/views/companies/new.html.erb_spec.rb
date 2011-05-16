@@ -2,9 +2,9 @@ require 'spec_helper'
 
 describe "companies/new.html.erb" do
   before(:each) do
-    assign(:company, stub_model(Company,
+    assign(:company, Factory(:company,
       :name => "MyString"
-    ).as_new_record)
+    ))
   end
 
   it "renders new company form" do

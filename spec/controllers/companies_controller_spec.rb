@@ -81,14 +81,14 @@ describe CompaniesController do
     describe "with invalid params" do
       it "assigns a newly created but unsaved company as @company" do
         # Trigger the behavior that occurs when invalid params are submitted
-        Company.any_instance.stub(:save).and_return(false)
+        Company.any_instance.stubs(:save).returns(false)
         post :create, :company => {}
         assigns(:company).should be_a_new(Company)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
-        Company.any_instance.stub(:save).and_return(false)
+        Company.any_instance.stubs(:save).returns(false)
         post :create, :company => {}
         response.should render_template("new")
       end
@@ -124,7 +124,7 @@ describe CompaniesController do
       it "assigns the company as @company" do
         company = Company.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
-        Company.any_instance.stub(:save).and_return(false)
+        Company.any_instance.stubs(:save).returns(false)
         put :update, :id => company.id.to_s, :company => {}
         assigns(:company).should eq(company)
       end
@@ -132,7 +132,7 @@ describe CompaniesController do
       it "re-renders the 'edit' template" do
         company = Company.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
-        Company.any_instance.stub(:save).and_return(false)
+        Company.any_instance.stubs(:save).returns(false)
         put :update, :id => company.id.to_s, :company => {}
         response.should render_template("edit")
       end

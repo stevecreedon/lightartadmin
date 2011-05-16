@@ -81,14 +81,14 @@ describe CostCentresController do
     describe "with invalid params" do
       it "assigns a newly created but unsaved cost_centre as @cost_centre" do
         # Trigger the behavior that occurs when invalid params are submitted
-        CostCentre.any_instance.stub(:save).and_return(false)
+        CostCentre.any_instance.stubs(:save).returns(false)
         post :create, :cost_centre => {}
         assigns(:cost_centre).should be_a_new(CostCentre)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
-        CostCentre.any_instance.stub(:save).and_return(false)
+        CostCentre.any_instance.stubs(:save).returns(false)
         post :create, :cost_centre => {}
         response.should render_template("new")
       end
@@ -124,7 +124,7 @@ describe CostCentresController do
       it "assigns the cost_centre as @cost_centre" do
         cost_centre = CostCentre.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
-        CostCentre.any_instance.stub(:save).and_return(false)
+        CostCentre.any_instance.stubs(:save).returns(false)
         put :update, :id => cost_centre.id.to_s, :cost_centre => {}
         assigns(:cost_centre).should eq(cost_centre)
       end
@@ -132,7 +132,7 @@ describe CostCentresController do
       it "re-renders the 'edit' template" do
         cost_centre = CostCentre.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
-        CostCentre.any_instance.stub(:save).and_return(false)
+        CostCentre.any_instance.stubs(:save).returns(false)
         put :update, :id => cost_centre.id.to_s, :cost_centre => {}
         response.should render_template("edit")
       end

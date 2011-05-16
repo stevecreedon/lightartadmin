@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "cost_types/edit.html.erb" do
   before(:each) do
-    @cost_type = assign(:cost_type, stub_model(CostType,
+    @cost_type = assign(:cost_type, Factory(:cost_type,
       :name => "MyString"
     ))
   end

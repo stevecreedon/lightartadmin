@@ -3,6 +3,8 @@ class CostType < ActiveRecord::Base
   
   has_many :costs
   
+  validates :name, :presence => true
+  
 end
 
 # == Schema Information

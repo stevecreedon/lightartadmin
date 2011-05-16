@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "costs/new.html.erb" do
   before(:each) do
-    assign(:cost, stub_model(Cost,
+    assign(:cost, Factory(:cost,
       :amount => "",
       :vat => "",
       :description => "",
@@ -10,7 +10,7 @@ describe "costs/new.html.erb" do
       :payment_date => "",
       :cost_centre_id => "",
       :payer_id => "",
-      :payment_type_id => "",
+      :payment_method_id => "",
       :cost_type_id => "",
       :company_id => "",
       :contact_id => 1
@@ -29,7 +29,7 @@ describe "costs/new.html.erb" do
       assert_select "input#cost_payment_date", :name => "cost[payment_date]"
       assert_select "input#cost_cost_centre_id", :name => "cost[cost_centre_id]"
       assert_select "input#cost_payer_id", :name => "cost[payer_id]"
-      assert_select "input#cost_payment_type_id", :name => "cost[payment_type_id]"
+      assert_select "input#cost_payment_method_id", :name => "cost[payment_method_id]"
       assert_select "input#cost_cost_type_id", :name => "cost[cost_type_id]"
       assert_select "input#cost_company_id", :name => "cost[company_id]"
       assert_select "input#cost_contact_id", :name => "cost[contact_id]"

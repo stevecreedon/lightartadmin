@@ -1,5 +1,5 @@
-Factory.define :payment_type do |payment_type|
-  payment_type.name 'test payment type'
+Factory.define :payment_method do |payment_method|
+  payment_method.name 'test payment type'
 end
 
 Factory.define :cost_centre do |cost_centre|
@@ -27,16 +27,22 @@ Factory.define :user do |user|
   user.password 'Fyodor01'
 end
 
+Factory.define :project do |project|
+  project.name 'test project'
+end
+
 Factory.define :cost do |cost|
   cost.description 'test cost description'
   cost.amount BigDecimal.new('101.01')
   cost.reference 'ref:test/123'
   cost.payment_date Date.civil(2010,6,6)
-  cost.payment_type {Factory(:payment_type)}
+  cost.payment_method {Factory(:payment_method)}
   cost.cost_type {Factory(:cost_type)}
+  cost.project {Factory(:project)}
   cost.cost_centre {Factory(:cost_centre)}
   cost.contact {Factory(:contact)}
   cost.company {Factory(:company)}
   cost.user {Factory(:user)}
   cost.vat 17.5
+  cost.vat_inclusive true
 end

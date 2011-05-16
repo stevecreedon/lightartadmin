@@ -24,7 +24,7 @@ describe CostTypesController do
   # CostType. As you add validations to CostType, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    {}
+    {:name => 'test name'}
   end
 
   describe "GET index" do
@@ -81,14 +81,14 @@ describe CostTypesController do
     describe "with invalid params" do
       it "assigns a newly created but unsaved cost_type as @cost_type" do
         # Trigger the behavior that occurs when invalid params are submitted
-        CostType.any_instance.stub(:save).and_return(false)
+        CostType.any_instance.stubs(:save).returns(false)
         post :create, :cost_type => {}
         assigns(:cost_type).should be_a_new(CostType)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
-        CostType.any_instance.stub(:save).and_return(false)
+        CostType.any_instance.stubs(:save).returns(false)
         post :create, :cost_type => {}
         response.should render_template("new")
       end
@@ -103,7 +103,7 @@ describe CostTypesController do
         # specifies that the CostType created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        CostType.any_instance.should_receive(:update_attributes).with({'these' => 'params'})
+        CostType.any_instance.expects(:update_attributes).with({'these' => 'params'})
         put :update, :id => cost_type.id, :cost_type => {'these' => 'params'}
       end
 
@@ -124,7 +124,7 @@ describe CostTypesController do
       it "assigns the cost_type as @cost_type" do
         cost_type = CostType.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
-        CostType.any_instance.stub(:save).and_return(false)
+        CostType.any_instance.stubs(:save).returns(false)
         put :update, :id => cost_type.id.to_s, :cost_type => {}
         assigns(:cost_type).should eq(cost_type)
       end
@@ -132,7 +132,7 @@ describe CostTypesController do
       it "re-renders the 'edit' template" do
         cost_type = CostType.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
-        CostType.any_instance.stub(:save).and_return(false)
+        CostType.any_instance.stubs(:save).returns(false)
         put :update, :id => cost_type.id.to_s, :cost_type => {}
         response.should render_template("edit")
       end

@@ -2,9 +2,9 @@ require 'spec_helper'
 
 describe "contacts/new.html.erb" do
   before(:each) do
-    assign(:contact, stub_model(Contact,
+    assign(:contact, Factory(:contact,
       :name => "MyString"
-    ).as_new_record)
+    ))
   end
 
   it "renders new contact form" do

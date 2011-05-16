@@ -8,7 +8,7 @@ class CreateCosts < ActiveRecord::Migration
       t.date :payment_date
       t.integer :cost_centre_id
       t.integer :user_id
-      t.integer :payment_type_id
+      t.integer :payment_method_id
       t.integer :cost_type_id
       t.integer :company_id
       t.integer :contact_id

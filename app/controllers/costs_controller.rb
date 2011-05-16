@@ -2,7 +2,14 @@ class CostsController < ApplicationController
   # GET /costs
   # GET /costs.xml
   def index
-    @costs = Cost.all
+    
+    sql = SqlBuilder.new
+    sql.equals(:user_id => params[:has_spent], 
+                :cost_centre_id => params[:cost_centre_id],
+                :project_id => params[:project_id])
+    sql.greater_than_or_equal(:payment_date => Date.from(params[:in_the_last].to_i))
+    
+    @costs = Cost.where(sql.to_a)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -24,7 +31,7 @@ class CostsController < ApplicationController
   # GET /costs/new
   # GET /costs/new.xml
   def new
-    @cost = Cost.new
+    @cost = Cost.new(:payment_date => Date.today)
 
     respond_to do |format|
       format.html # new.html.erb
@@ -35,6 +42,7 @@ class CostsController < ApplicationController
   # GET /costs/1/edit
   def edit
     @cost = Cost.find(params[:id])
+    @cost.vat_inclusive = false
   end
 
   # POST /costs
@@ -44,7 +52,7 @@ class CostsController < ApplicationController
 
     respond_to do |format|
       if @cost.save
-        format.html { redirect_to(@cost, :notice => 'Cost was successfully created.') }
+        format.html { redirect_to(costs_path, :notice => 'Cost was successfully created.') }
         format.xml  { render :xml => @cost, :status => :created, :location => @cost }
       else
         format.html { render :action => "new" }
@@ -60,7 +68,7 @@ class CostsController < ApplicationController
 
     respond_to do |format|
       if @cost.update_attributes(params[:cost])
-        format.html { redirect_to(@cost, :notice => 'Cost was successfully updated.') }
+        format.html { redirect_to(costs_path, :notice => 'Cost was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -80,4 +88,7 @@ class CostsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+ 
+  
 end

@@ -2,9 +2,9 @@ require 'spec_helper'
 
 describe "cost_types/new.html.erb" do
   before(:each) do
-    assign(:cost_type, stub_model(CostType,
+    assign(:cost_type, Factory(:cost_type,
       :name => "MyString"
-    ).as_new_record)
+    ))
   end
 
   it "renders new cost_type form" do
