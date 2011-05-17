@@ -27,34 +27,34 @@
 
 <p>
   <b>Cost centre:</b>
-  <%= @cost.cost_centre_id %>
+  <%= @cost.cost_centre.name %>
 </p>
 
 <p>
   <b>Payer:</b>
-  <%= @cost.payer_id %>
+  <%= @cost.user.email %>
 </p>
 
 <p>
   <b>Payment type:</b>
-  <%= @cost.payment_method_id %>
+  <%= @cost.payment_method.name %>
 </p>
 
 <p>
   <b>Cost type:</b>
-  <%= @cost.cost_type_id %>
+  <%= @cost.cost_type.name %>
 </p>
 
 <p>
   <b>Company:</b>
-  <%= @cost.company_id %>
+  <%= @cost.company.name if @cost.company %>
 </p>
 
 <p>
   <b>Contact:</b>
-  <%= @cost.contact_id %>
+  <%= @cost.contact.name if @cost.contact%>
 </p>
 
 
-<%= link_to 'Edit', edit_cost_path(@cost) %> |
-<%= link_to 'Back', costs_path %>
+<%= link_to image_tag('document_edit.png', :title => 'edit this'), edit_cost_path(@cost) %>
+<%= link_to image_tag('file_search.png', :title => 'return to list'), costs_path %>

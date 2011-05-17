@@ -29,13 +29,13 @@
     <td><%= cost.cost_type.name %></td>
     <td><%= cost.company.name if cost.company %></td>
     <td><%= cost.contact.name if cost.contact %></td>
-    <td><%= link_to 'Show', cost %><br/>
-    <%= link_to 'Edit', edit_cost_path(cost) %><br/>
-    <%= link_to 'Destroy', cost, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to image_tag('document.png', :title => 'see this'), cost %>
+    <%= link_to image_tag('document_edit.png', :title => 'edit this'), edit_cost_path(cost) %>
+    <%= link_to image_tag('document_delete.png', :title => 'delete this'), cost, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Cost', new_cost_path %>
+<%= link_to image_tag('document_add.png', :title => 'create a new one'), new_cost_path %>

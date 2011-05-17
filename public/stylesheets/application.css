@@ -56,5 +56,12 @@ form.submit_form{
 	padding-left: 0px;
 }
 
+a > img{
+	margin-right: 3px;
+}
+.grid-container{
+	margin: 20px;
+}
+
 
 
