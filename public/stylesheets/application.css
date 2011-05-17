@@ -48,6 +48,8 @@ h1.page_title{
 div.container h4{
 	margin-bottom: 0px;
 	margin-top: 20px;
+	font-weight: bold;
+	font-size: 1.2em;
 }
 
 form.submit_form{
