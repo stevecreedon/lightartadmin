@@ -6,4 +6,9 @@ $(document).ready(function(){
 		form = $(this).attr("role");
 		$("#" + form).submit();
 	});
+	
+	$("#in_the_last").change(function(){$("#filter_me").submit()});
+	$("#has_spent").change(function(){$("#filter_me").submit()});
+	
+	
 });

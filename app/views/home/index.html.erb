@@ -1,10 +1,10 @@
-<% form_tag root_path do %>
+<% form_tag root_path, :id => 'filter_me' do %>
 	In the last
-	<%= select_tag(:in_the_last, in_the_last_options) %>
+	<%= select_tag(:in_the_last, options_for_select(in_the_last_options, params[:in_the_last])) %>
 	&nbsp;
-	<%= select_tag(:has_spent, users_options) %>
-	<%= submit_tag "Go" %>
+	<%= select_tag(:has_spent, options_for_select(users_options, params[:has_spent])) %>
 <% end %>
+
 <h4><%= user_has_spent %></h4>
 <%= number_to_currency(total_for_user(params[:user_id]), :unit => '&pound;') %>
 

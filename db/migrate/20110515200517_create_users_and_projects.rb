@@ -9,7 +9,7 @@ class CreateUsersAndProjects < ActiveRecord::Migration
     CostCentre.create!(:name => 'Model Development')
     CostCentre.create!(:name => 'Shop')
     CostCentre.create!(:name => 'Marketing')
-    CostCentre.create!(:name => 'Delivery')
+    CostCentre.create!(:name => 'Postage & Packing')
   end  
   
   def self.down

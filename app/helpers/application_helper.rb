@@ -30,23 +30,27 @@ module ApplicationHelper
   end
   
   def total_for_user(user_id)
-    Cost.where("user_id = ? AND payment_date >= ?", 
-                            params[:has_spent],
-                            Date.from(params[:in_the_last].to_i)).sum(:amount)
+    sql = SqlBuilder.new
+    sql.equals(:user_id => params[:has_spent])
+    sql.greater_than_or_equal(:payment_date => Date.from(params[:in_the_last].to_i))
+    
+    Cost.where(sql.to_a).sum(:amount)
   end
   
   def total_costs_by_cost_centre(cost_centre)
-    Cost.where("cost_centre_id = ? AND user_id = ? AND payment_date >= ?", 
-                            cost_centre.id, 
-                            params[:has_spent],
-                            Date.from(params[:in_the_last].to_i)).sum(:amount)
+    sql = SqlBuilder.new
+    sql.equals(:user_id => params[:has_spent], :cost_centre_id => cost_centre.id)
+    sql.greater_than_or_equal(:payment_date => Date.from(params[:in_the_last].to_i))
+    
+    Cost.where(sql.to_a).sum(:amount)
   end
   
   def total_costs_by_project(project)
-    Cost.where("project_id = ? AND user_id = ? AND payment_date >= ?",
-                            project.id,
-                            params[:has_spent],
-                            Date.from(params[:in_the_last].to_i)).sum(:amount)
+     sql = SqlBuilder.new
+     sql.equals(:user_id => params[:has_spent], :project_id => project.id)
+     sql.greater_than_or_equal(:payment_date => Date.from(params[:in_the_last].to_i))
+
+     Cost.where(sql.to_a).sum(:amount)
   end
   
 end

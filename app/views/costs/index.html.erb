@@ -8,12 +8,10 @@
     <th>Cost centre</th>
     <th>Project</th>
     <th>User</th>
-    <th>Payment type</th>
+    <th>Payment method</th>
     <th>Cost type</th>
     <th>Company</th>
     <th>Contact</th>
-    <th></th>
-    <th></th>
     <th></th>
   </tr>
 
@@ -23,7 +21,7 @@
     <td><%= cost.vat.round(2) %>%</td>
     <td><%= cost.description %></td>
     <td><%= cost.reference %></td>
-    <td><%= cost.payment_date %></td>
+    <td><%= cost.payment_date.strftime("%d/%m/%Y") %></td>
     <td><%= cost.cost_centre.name %></td>
     <td><%= cost.project.name if cost.project %></td>
     <td><%= cost.user.email %></td>
@@ -31,9 +29,9 @@
     <td><%= cost.cost_type.name %></td>
     <td><%= cost.company.name if cost.company %></td>
     <td><%= cost.contact.name if cost.contact %></td>
-    <td><%= link_to 'Show', cost %></td>
-    <td><%= link_to 'Edit', edit_cost_path(cost) %></td>
-    <td><%= link_to 'Destroy', cost, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Show', cost %><br/>
+    <%= link_to 'Edit', edit_cost_path(cost) %><br/>
+    <%= link_to 'Destroy', cost, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
