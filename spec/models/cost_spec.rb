@@ -45,7 +45,7 @@ describe Cost do
     it 'should not be valid when the cost is unpopulated' do
       cost = Cost.new
       cost.valid?.should be_false
-      cost.errors.size.should == 13
+      cost.errors.size.should == 12
       cost.errors[:description].should == ["can't be blank"]
       cost.errors[:reference].should == ["can't be blank"]
       cost.errors[:payment_date].should == ["can't be blank"]
@@ -53,7 +53,6 @@ describe Cost do
       cost.errors[:cost_centre].should == ["can't be blank"]
       cost.errors[:cost_type].should == ["can't be blank"]
       cost.errors[:description].should == ["can't be blank"]
-      cost.errors[:project].should == ["can't be blank"]
       cost.errors[:amount].should == ["is not a number"]
       cost.errors[:vat].should == ["is not a number"]
       cost.errors[:company].should == ["can't be blank if contact is blank"]

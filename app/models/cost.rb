@@ -1,5 +1,7 @@
 class Cost < ActiveRecord::Base
   
+  HUNDRED = BigDecimal.new('100.00')
+  
   attr_accessor :vat_inclusive
   
   belongs_to :payment_method
@@ -30,7 +32,7 @@ class Cost < ActiveRecord::Base
   
   def calculate_vat
     return unless self.vat && self.amount && vat_inclusive
-    self.amount = self.amount / ((100.0 + vat.to_f)/100.0) unless vat_inclusive == false || vat_inclusive == 'false'
+    self.amount = self.amount / ((HUNDRED + vat.to_d)/HUNDRED) unless vat_inclusive == false || vat_inclusive == 'false'
   end                       
   
 end
