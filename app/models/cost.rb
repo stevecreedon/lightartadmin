@@ -1,6 +1,6 @@
 class Cost < ActiveRecord::Base
   
-  default_scope :order => 'created_at payment_date DESC'
+  default_scope :order => 'payment_date DESC'
   
   HUNDRED = BigDecimal.new('100.00')
   
