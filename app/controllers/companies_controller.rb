@@ -74,10 +74,10 @@ class CompaniesController < ApplicationController
   # DELETE /companies/1.xml
   def destroy
     @company = Company.find(params[:id])
-    @company.destroy
+    notice = @company.destroy  ? "Company destroyed" : "Unable to destroy Company as it has existing costs"
 
     respond_to do |format|
-      format.html { redirect_to(companies_url) }
+      format.html { redirect_to(companies_url, :notice => notice) }
       format.xml  { head :ok }
     end
   end

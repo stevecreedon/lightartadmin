@@ -5,6 +5,8 @@ class CostType < ActiveRecord::Base
   
   validates :name, :presence => true
   
+  before_destroy Proc.new{|model| return model.costs.count == 0}
+  
 end
 
 # == Schema Information

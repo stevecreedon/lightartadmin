@@ -73,10 +73,10 @@ class CostCentresController < ApplicationController
   # DELETE /cost_centres/1.xml
   def destroy
     @cost_centre = CostCentre.find(params[:id])
-    @cost_centre.destroy
+    notice = @cost_centre.destroy ? "Cost Centre destroyed" : "Unable to destroy Cost Centre as it has existing costs"
 
     respond_to do |format|
-      format.html { redirect_to(cost_centres_url) }
+      format.html { redirect_to(cost_centres_url, :notice => notice) }
       format.xml  { head :ok }
     end
   end

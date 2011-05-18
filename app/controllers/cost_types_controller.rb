@@ -73,10 +73,10 @@ class CostTypesController < ApplicationController
   # DELETE /cost_types/1.xml
   def destroy
     @cost_type = CostType.find(params[:id])
-    @cost_type.destroy
+    notice = @cost_type.destroy  ? "Cost Type destroyed" : "Unable to destroy Cost Type as it has existing costs"
 
     respond_to do |format|
-      format.html { redirect_to(cost_types_url) }
+      format.html { redirect_to(cost_types_url, :notice => notice) }
       format.xml  { head :ok }
     end
   end

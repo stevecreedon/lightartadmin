@@ -73,10 +73,10 @@ class ContactsController < ApplicationController
   # DELETE /contacts/1.xml
   def destroy
     @contact = Contact.find(params[:id])
-    @contact.destroy
+    notice = @contact.destroy ? "Contact destroyed" : "Unable to destroy Contact as it has existing costs"
 
     respond_to do |format|
-      format.html { redirect_to(contacts_url) }
+      format.html { redirect_to(contacts_url, :notice => notice) }
       format.xml  { head :ok }
     end
   end

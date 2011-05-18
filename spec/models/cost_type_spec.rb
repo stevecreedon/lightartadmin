@@ -1,7 +1,14 @@
 require 'spec_helper'
 
 describe CostType do
-  pending "add some examples to (or delete) #{__FILE__}"
+  
+  it 'should not be destroyed if there are costs' do
+      cost = Factory(:cost)
+      lambda do
+        cost.cost_type.destroy
+      end.should change(CostType, :count).by(0)
+  end
+  
 end
 
 # == Schema Information

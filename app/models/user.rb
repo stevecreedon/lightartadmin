@@ -11,6 +11,9 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
+  
+  before_destroy Proc.new{|model| return model.costs.count == 0}
+  
 end
 
 # == Schema Information

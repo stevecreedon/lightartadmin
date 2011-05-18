@@ -1,7 +1,14 @@
 require 'spec_helper'
 
 describe PaymentMethod do
-  pending "add some examples to (or delete) #{__FILE__}"
+  
+  it 'should not be destroyed if there are costs' do
+      cost = Factory(:cost)
+      lambda do
+        cost.payment_method.destroy
+      end.should change(PaymentMethod, :count).by(0)
+  end
+  
 end
 
 # == Schema Information

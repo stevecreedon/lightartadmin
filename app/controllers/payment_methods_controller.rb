@@ -73,10 +73,9 @@ class PaymentMethodsController < ApplicationController
   # DELETE /payment_methods/1.xml
   def destroy
     @payment_method = PaymentMethod.find(params[:id])
-    @payment_method.destroy
-
+    notice = @payment_method.destroy ? "Payment Method destroyed" : "Unable to destroy Payment Method as it has existing costs"
     respond_to do |format|
-      format.html { redirect_to(payment_methods_url) }
+      format.html { redirect_to(payment_methods_url, :notice => notice) }
       format.xml  { head :ok }
     end
   end

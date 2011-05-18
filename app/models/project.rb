@@ -2,6 +2,8 @@ class Project < ActiveRecord::Base
   has_many :costs
   validates_presence_of :name
   
+  
+  
   def first
     self.name
   end
