@@ -10,10 +10,11 @@ module CostsHelper
   
   def in_the_last_options(selected=nil)
     options_for_select([
-  		["this week","0"], 
-  		["in the last 7 days","1"], 
-  		["this month","2"], 
-  		["the last 30 days","3"]
+      ["All","0"],
+  		["this week","1"], 
+  		["in the last 7 days","2"], 
+  		["this month","3"], 
+  		["the last 30 days","4"]
   	], selected)
   end
   

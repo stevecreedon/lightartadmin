@@ -1,9 +1,10 @@
 class Date
   
-  BEGINNING_OF_WEEK = 0
-  SEVEN_DAYS_AGO = 1
-  BEGINNING_OF_MONTH = 2
-  THIRTY_DAYS_AGO = 3
+  ALL = 0
+  BEGINNING_OF_WEEK = 1
+  SEVEN_DAYS_AGO = 2
+  BEGINNING_OF_MONTH = 3
+  THIRTY_DAYS_AGO = 4
   
   def self.from(last_id)
      case(last_id)
