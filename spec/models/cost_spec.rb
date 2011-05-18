@@ -38,6 +38,16 @@ describe Cost do
       
     end
     
+    it 'should calculate the vat amount' do
+      cost = Factory.build(:cost, :amount => 100.0, :vat => 17.5, :vat_inclusive => true)
+      cost.vat_amount.should == 17.5
+    end
+    
+    it 'should calculate the total amount' do
+        cost = Factory.build(:cost, :amount => 100.0, :vat => 17.5, :vat_inclusive => true)
+        cost.total_amount.should == 117.5
+    end
+    
   end
   
   describe 'validations' do

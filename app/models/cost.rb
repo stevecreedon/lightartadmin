@@ -28,6 +28,14 @@ class Cost < ActiveRecord::Base
                         
   before_validation :calculate_vat
   
+  def vat_amount
+    total_amount - self.amount
+  end
+  
+  def total_amount
+    (self.amount * ((HUNDRED + vat.to_d) / HUNDRED))
+  end
+  
   private 
   
   def calculate_vat

@@ -2,14 +2,16 @@
   <tr>
     <th>Amount</th>
     <th>Vat</th>
+    <th></th>
+    <th>Total</th>
     <th>Description</th>
     <th>Reference</th>
-    <th>Payment date</th>
+    <th>Paid</th>
     <th>Cost centre</th>
     <th>Project</th>
     <th>User</th>
-    <th>Payment method</th>
-    <th>Cost type</th>
+    <th>Method</th>
+    <th>Type</th>
     <th>Company</th>
     <th>Contact</th>
     <th></th>
@@ -18,7 +20,9 @@
 <% @costs.each do |cost| %>
   <tr>
     <td><%= number_to_currency(cost.amount, :unit => '&pound;') %></td>
+    <td><%= number_to_currency(cost.vat_amount, :unit => '&pound;') %></td>
     <td><%= cost.vat.round(2) %>%</td>
+    <td><%= number_to_currency(cost.total_amount, :unit => '&pound;') %></td>
     <td><%= cost.description %></td>
     <td><%= cost.reference %></td>
     <td><%= cost.payment_date.strftime("%d/%m/%Y") %></td>

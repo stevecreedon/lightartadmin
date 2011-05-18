@@ -58,6 +58,10 @@ form.submit_form{
 	padding-left: 0px;
 }
 
+form{
+	margin-bottom: 20px;
+}
+
 a > img{
 	margin-right: 3px;
 }

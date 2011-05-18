@@ -7,7 +7,7 @@
 
 <p>
   <b>User:</b>
-  <%= @payment_method.user_id %>
+  <%= @payment_method.user.email if  @payment_method.user %>
 </p>
 
 
