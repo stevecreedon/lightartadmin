@@ -65,5 +65,8 @@ a > img{
 	margin: 20px;
 }
 
+#growl{display:none;}
+#growl > li {text-align: left;}
+
 
 

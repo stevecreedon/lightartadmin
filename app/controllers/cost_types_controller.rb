@@ -44,7 +44,7 @@ class CostTypesController < ApplicationController
 
     respond_to do |format|
       if @cost_type.save
-        format.html { redirect_to(@cost_type, :notice => 'Cost type was successfully created.') }
+        format.html { redirect_to(@cost_type, :notice => 'Cost Type was successfully created.') }
         format.xml  { render :xml => @cost_type, :status => :created, :location => @cost_type }
       else
         format.html { render :action => "new" }
@@ -60,7 +60,7 @@ class CostTypesController < ApplicationController
 
     respond_to do |format|
       if @cost_type.update_attributes(params[:cost_type])
-        format.html { redirect_to(@cost_type, :notice => 'Cost type was successfully updated.') }
+        format.html { redirect_to(@cost_type, :notice => 'Cost Type was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

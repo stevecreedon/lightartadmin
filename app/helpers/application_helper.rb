@@ -53,4 +53,10 @@ module ApplicationHelper
      Cost.where(sql.to_a).sum(:amount)
   end
   
+  def growlify(obj)
+     return obj if obj.is_a?(String)
+     puts obj.join("</li><li>")
+     return obj.join("</li><li>") if obj.is_a?(Array)
+   end
+  
 end
