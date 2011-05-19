@@ -68,3 +68,7 @@ form.formtastic fieldset.buttons {
 	border-radius: 15px;
 	padding: 10px;
 }
+
+td{
+	vertical-align: top;
+}
