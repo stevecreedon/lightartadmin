@@ -45,3 +45,17 @@ form.formtastic fieldset > ol > li.date fieldset ol li label input{
 	font-weight: normal;
 	font-size: 1em;
 }
+
+form.formtastic fieldset{
+	background-color: #E5ECF9;
+	padding: 20px;
+	margin-bottom: 10px;
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+}
+
+.error {
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+	padding: 10px;
+}
