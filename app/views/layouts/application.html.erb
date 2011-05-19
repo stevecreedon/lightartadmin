@@ -16,6 +16,11 @@
   <%= csrf_meta_tag %>
 </head>
 <body>
+	
+<div id="authentication">
+	<%= render :partial => 'layouts/sign_in' unless user_signed_in? %>
+	<%= render :partial => 'layouts/sign_out' if user_signed_in? %>
+</div>	
 
 <div id="navigation">
 	<h1>Light Art Costs</h1>

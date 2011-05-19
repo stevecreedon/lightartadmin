@@ -72,5 +72,16 @@ a > img{
 #growl{display:none;}
 #growl > li {text-align: left;}
 
+#authentication{
+	float: right;
+	font-size: 1em;
+	margin-right: 20px;
+	color: #FE8DB8;
+}
+
+#authentication a{
+	color: white;
+}
+
 
 
