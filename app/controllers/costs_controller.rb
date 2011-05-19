@@ -31,7 +31,7 @@ class CostsController < ApplicationController
   # GET /costs/new
   # GET /costs/new.xml
   def new
-    @cost = Cost.new(:payment_date => Date.today)
+    @cost = Cost.new(:payment_date => Date.today, :user => current_user)
 
     respond_to do |format|
       format.html # new.html.erb
