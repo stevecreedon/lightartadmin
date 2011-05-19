@@ -4,14 +4,14 @@
     <th>Vat</th>
     <th></th>
     <th>Total</th>
-    <th>Description</th>
+    <th width="200">Description</th>
     <th>Reference</th>
     <th>Paid</th>
     <th>Cost centre</th>
-    <th>Project</th>
+    <th>Type</th>
+    <th>Project</th>    
     <th>User</th>
     <th>Method</th>
-    <th>Type</th>
     <th>Company</th>
     <th>Contact</th>
     <th></th>
@@ -27,10 +27,10 @@
     <td><%= cost.reference %></td>
     <td><%= cost.payment_date.strftime("%d/%m/%Y") %></td>
     <td><%= cost.cost_centre.name %></td>
-    <td><%= cost.project.name if cost.project %></td>
+    <td><%= cost.cost_type.name %></td>
+    <td><%= cost.project.name if cost.project %></td>   
     <td><%= cost.user.email %></td>
     <td><%= cost.payment_method.name %></td>
-    <td><%= cost.cost_type.name %></td>
     <td><%= cost.company.name if cost.company %></td>
     <td><%= cost.contact.name if cost.contact %></td>
     <td><%= link_to image_tag('document.png', :title => 'see this'), cost %>
