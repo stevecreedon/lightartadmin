@@ -2,6 +2,8 @@ class Company < ActiveRecord::Base
   include Optionable
   
   has_many :costs
+  
+  validates_presence_of :name
 
   before_destroy Proc.new{|model| return model.costs.count == 0}
 

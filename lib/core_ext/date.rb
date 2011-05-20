@@ -8,6 +8,8 @@ class Date
   
   def self.from(last_id)
      case(last_id)
+       when ALL
+         return nil
        when BEGINNING_OF_WEEK
          return beginning_of_week
        when SEVEN_DAYS_AGO

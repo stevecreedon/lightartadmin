@@ -3,11 +3,14 @@ class CostsController < ApplicationController
   # GET /costs.xml
   def index
     
+    eq = {:user_id => params[:has_spent], 
+          :cost_centre_id => params[:cost_centre_id],
+          :project_id => params[:project_id]}
+          
+    gt_or_eq = {:payment_date => Date.from(params[:in_the_last].to_i)}
+    
     sql = SqlBuilder.new
-    sql.equals(:user_id => params[:has_spent], 
-                :cost_centre_id => params[:cost_centre_id],
-                :project_id => params[:project_id])
-    sql.greater_than_or_equal(:payment_date => Date.from(params[:in_the_last].to_i))
+    sql.equals(eq).greater_than_or_equal(gt_or_eq)
     
     @costs = Cost.where(sql.to_a)
 
