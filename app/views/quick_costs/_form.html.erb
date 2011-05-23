@@ -1,0 +1,24 @@
+<%= semantic_form_for(@quick_cost) do |f| %>
+    <% f.inputs do %>
+		<%= f.input :name %>  
+    <% end %>
+    <% f.inputs do %>
+    	<%= f.input :vat, :as => :select, :collection => vats, :label => 'VAT at' %>
+      <% end %>
+      <% f.inputs do %>  
+    	<%= f.input :description, :as => :text %>
+	  <% end %>
+	  <% f.inputs do %>    
+	    <%= f.input :cost_centre_id, :as => :select, :collection => CostCentre.all, :include_blank => true %>
+	    <%= f.input :project_id, :as => :select, :collection => Project.all, :include_blank => true %>
+	    <%= f.input :cost_type_id, :as => :select, :collection => CostType.all, :include_blank => true %>
+	  <% end %> 
+	 <% f.inputs do %>   
+	    <%= f.input :payment_method_id, :as => :select, :collection => PaymentMethod.all, :include_blank => true %>	
+	    <%= f.input :company_id, :as => :select, :collection => Company.all, :include_blank => true %>
+	    <%= f.input :contact_id, :as => :select, :collection =>  Contact.all, :include_blank => true %>
+    <% end %>
+    <% f.buttons :commit => {:name => 'bb'}  do %>
+		<%= f.submit 'create a cost template' %> 
+    <% end %>
+<% end %>

@@ -1,0 +1,21 @@
+<table>
+  <tr>
+	<th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @quick_costs.each do |quick_cost| %>
+  <tr>
+	<td><%= link_to quick_cost.name, new_cost_path(:template_id => quick_cost.id) %></td>
+    <td><%= link_to 'Show', quick_cost %></td>
+    <td><%= link_to 'Edit', edit_quick_cost_path(quick_cost) %></td>
+    <td><%= link_to 'Destroy', quick_cost, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Quick Cost', new_quick_cost_path %>

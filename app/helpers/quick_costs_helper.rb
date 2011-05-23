@@ -1,0 +1,2 @@
+module QuickCostsHelper
+end

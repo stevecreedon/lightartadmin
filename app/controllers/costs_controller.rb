@@ -34,8 +34,15 @@ class CostsController < ApplicationController
   # GET /costs/new
   # GET /costs/new.xml
   def new
-    @cost = Cost.new(:payment_date => Date.today, :user => current_user)
-
+  
+    if params[:template_id]
+      @cost = Cost.new.from_json QuickCost.first.json
+      @cost.user = current_user
+      @cost.payment_date = Date.today
+    else
+      @cost = Cost.new(:payment_date => Date.today, :user => current_user)
+    end
+    
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @cost }

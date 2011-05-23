@@ -19,6 +19,10 @@ require 'spec_helper'
 # that an instance is receiving a specific message.
 
 describe CostTypesController do
+  
+  before(:each) do
+    sign_in :user, Factory(:user)
+  end
 
   # This should return the minimal set of attributes required to create a valid
   # CostType. As you add validations to CostType, be sure to

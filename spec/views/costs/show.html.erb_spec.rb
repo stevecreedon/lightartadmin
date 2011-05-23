@@ -9,7 +9,7 @@ describe "costs/show.html.erb" do
       :reference => "",
       :payment_date => "",
       :cost_centre_id => "",
-      :payer_id => "",
+      :user_id => "",
       :payment_method_id => "",
       :cost_type_id => "",
       :company_id => "",

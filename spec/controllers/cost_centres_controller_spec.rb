@@ -19,12 +19,16 @@ require 'spec_helper'
 # that an instance is receiving a specific message.
 
 describe CostCentresController do
+  
+  before(:each) do
+    sign_in :user, Factory(:user)
+  end
 
   # This should return the minimal set of attributes required to create a valid
   # CostCentre. As you add validations to CostCentre, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    {}
+    {:name => 'test cost centre'}
   end
 
   describe "GET index" do

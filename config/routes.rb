@@ -1,4 +1,6 @@
 Lightartadmin::Application.routes.draw do
+  resources :quick_costs
+
   resources :projects
 
   resources :contacts

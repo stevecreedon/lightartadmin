@@ -18,4 +18,8 @@ module CostsHelper
   	], selected)
   end
   
+  def duplicate?
+    params[:duplicate] == 'true'
+  end
+  
 end

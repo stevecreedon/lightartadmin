@@ -19,12 +19,16 @@ require 'spec_helper'
 # that an instance is receiving a specific message.
 
 describe CostsController do
+  
+  before(:each) do
+    sign_in :user, Factory(:user)
+  end
 
   # This should return the minimal set of attributes required to create a valid
   # Cost. As you add validations to Cost, be sure to
   # update the return value of this method accordingly.
-  def valid_attributes
-    {}
+  def valid_attributes(args={})
+    Factory.build(:cost).attributes.merge(:vat_inclusive => true).merge(args)
   end
 
   describe "GET index" do
@@ -67,14 +71,14 @@ describe CostsController do
       end
 
       it "assigns a newly created cost as @cost" do
-        post :create, :cost => Factory.build(:cost).attributes
+        post :create, :cost => valid_attributes
         assigns(:cost).should be_a(Cost)
         assigns(:cost).should be_persisted
       end
 
       it "redirects to the created cost" do
         post :create, :cost => valid_attributes
-        response.should redirect_to(Cost.last)
+        response.should redirect_to(costs_path)
       end
     end
 
@@ -103,7 +107,7 @@ describe CostsController do
         # specifies that the Cost created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        Cost.any_instance.should_receive(:update_attributes).with({'these' => 'params'})
+        Cost.any_instance.expects(:update_attributes).with({'these' => 'params'})
         put :update, :id => cost.id, :cost => {'these' => 'params'}
       end
 
@@ -116,7 +120,7 @@ describe CostsController do
       it "redirects to the cost" do
         cost = Cost.create! valid_attributes
         put :update, :id => cost.id, :cost => valid_attributes
-        response.should redirect_to(cost)
+        response.should redirect_to(costs_path)
       end
     end
 

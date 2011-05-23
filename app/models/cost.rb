@@ -47,23 +47,25 @@ class Cost < ActiveRecord::Base
   
 end
 
+
 # == Schema Information
 #
 # Table name: costs
 #
-#  id              :integer         not null, primary key
-#  amount          :decimal(, )
-#  vat             :decimal(, )
-#  description     :string(255)
-#  reference       :string(255)
-#  payment_date    :date
-#  cost_centre_id  :integer
-#  user_id        :integer
+#  id                :integer         not null, primary key
+#  amount            :decimal(, )
+#  vat               :float
+#  description       :string(255)
+#  reference         :string(255)
+#  payment_date      :date
+#  cost_centre_id    :integer
+#  user_id           :integer
 #  payment_method_id :integer
-#  cost_type_id    :integer
-#  company_id      :integer
-#  contact_id      :integer
-#  created_at      :datetime
-#  updated_at      :datetime
+#  cost_type_id      :integer
+#  company_id        :integer
+#  contact_id        :integer
+#  created_at        :datetime
+#  updated_at        :datetime
+#  project_id        :integer
 #
 

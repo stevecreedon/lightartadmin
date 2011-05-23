@@ -19,12 +19,16 @@ require 'spec_helper'
 # that an instance is receiving a specific message.
 
 describe ContactsController do
+  
+  before(:each) do
+    sign_in :user, Factory(:user)
+  end
 
   # This should return the minimal set of attributes required to create a valid
   # Contact. As you add validations to Contact, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    {}
+    {:name => 'test contact'}
   end
 
   describe "GET index" do

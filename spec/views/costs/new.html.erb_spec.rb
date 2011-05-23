@@ -9,7 +9,7 @@ describe "costs/new.html.erb" do
       :reference => "",
       :payment_date => "",
       :cost_centre_id => "",
-      :payer_id => "",
+      :user_id => "",
       :payment_method_id => "",
       :cost_type_id => "",
       :company_id => "",
@@ -28,7 +28,7 @@ describe "costs/new.html.erb" do
       assert_select "input#cost_reference", :name => "cost[reference]"
       assert_select "input#cost_payment_date", :name => "cost[payment_date]"
       assert_select "input#cost_cost_centre_id", :name => "cost[cost_centre_id]"
-      assert_select "input#cost_payer_id", :name => "cost[payer_id]"
+      assert_select "input#cost_user_id", :name => "cost[user_id]"
       assert_select "input#cost_payment_method_id", :name => "cost[payment_method_id]"
       assert_select "input#cost_cost_type_id", :name => "cost[cost_type_id]"
       assert_select "input#cost_company_id", :name => "cost[company_id]"
