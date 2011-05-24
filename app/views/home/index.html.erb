@@ -1,12 +1,11 @@
 <% form_tag root_path, :id => 'filter_me' do %>
-    <% puts in_the_last_options %>
-	<%= select_tag(:in_the_last, in_the_last_options(params[:in_the_last])) %>
+	<%= select_tag('f[in_the_last]', in_the_last_options(f(:in_the_last))) %>
 	&nbsp;
-	<%= select_tag(:has_spent, users_options(params[:has_spent])) %>
+	<%= select_tag('f[has_spent]', users_options(f(:has_spent))) %>
 <% end %>
 
 <h4><%= user_has_spent %></h4>
-<%= number_to_currency(total_for_user(params[:user_id]), :unit => '&pound;') %>
+<%= number_to_currency(total_for_user(f(:user_id)), :unit => '&pound;') %>
 
 <h4>Cost Centres</h4>
 <% CostCentre.all.each do |cost_centre| %>
@@ -14,9 +13,9 @@
 	<%= cost_centre.name %>&nbsp;
 	<%= number_to_currency(total_costs_by_cost_centre(cost_centre), :unit => '&pound;') %>&nbsp;
 	<%= form_tag costs_path, :method => "GET", :id => "list_cost_centre_#{cost_centre.id}", :class => 'submit_form' do %>
-		<%= hidden_field_tag(:user_id, params[:has_spent]) %>&nbsp;
-		<%= hidden_field_tag(:in_the_last, params[:in_the_last]) %>&nbsp;
-		<%= hidden_field_tag(:cost_centre_id, cost_centre.id) %>
+		<%= hidden_field_tag('f[user_id]', f(:has_spent)) %>&nbsp;
+		<%= hidden_field_tag('f[in_the_last]', f(:in_the_last)) %>&nbsp;
+		<%= hidden_field_tag('f[cost_centre_id]', cost_centre.id) %>
 		<%= link_to "view",  "#", :class => "submit_form", :role => "list_cost_centre_#{cost_centre.id}" %>
 	<% end %>
 	</div>
@@ -27,8 +26,8 @@
 	<div><%= project.name %>&nbsp;
 		<%= number_to_currency(total_costs_by_project(project), :unit => '&pound;') %>
 		<%= form_tag costs_path, :method => "GET", :id => "list_project_#{project.id}", :class => 'submit_form' do %>
-			<%= hidden_field_tag(:user_id, params[:has_spent]) %>&nbsp;
-			<%= hidden_field_tag(:in_the_last, params[:in_the_last]) %>&nbsp;
+			<%= hidden_field_tag(:user_id, f(:has_spent)) %>&nbsp;
+			<%= hidden_field_tag(:in_the_last, f(:in_the_last)) %>&nbsp;
 			<%= hidden_field_tag(:project_id, project.id) %>
 			<%= link_to "view",  "#", :class => "submit_form", :role => "list_project_#{project.id}" %>
 		<% end %>

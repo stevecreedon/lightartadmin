@@ -3,16 +3,8 @@ class CostsController < ApplicationController
   # GET /costs.xml
   def index
     
-    eq = {:user_id => params[:has_spent], 
-          :cost_centre_id => params[:cost_centre_id],
-          :project_id => params[:project_id]}
-          
-    gt_or_eq = {:payment_date => Date.from(params[:in_the_last].to_i)}
-    
-    sql = SqlBuilder.new
-    sql.equals(eq).greater_than_or_equal(gt_or_eq)
-    
-    @costs = Cost.where(sql.to_a)
+    f = Filters.new(params)
+    @costs = Cost.where(f.sql.to_a)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -36,7 +28,7 @@ class CostsController < ApplicationController
   def new
   
     if params[:template_id]
-      @cost = Cost.new.from_json QuickCost.first.json
+      @cost = Cost.new.from_json QuickCost.find(params[:template_id]).json
       @cost.user = current_user
       @cost.payment_date = Date.today
     else

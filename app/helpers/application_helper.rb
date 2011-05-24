@@ -20,6 +20,16 @@ module ApplicationHelper
     
   end
   
+  def f(name)
+    return nil unless params[:f] && params[:f][name]
+    params[:f][name]
+  end
+  
+  def p(param)
+    return nil unless params[:p] && params[:p][name]
+    params[:p][name]
+  end
+  
   def vat_inclusives
     [[nil,nil],['includes VAT',true],['plus VAT', false]]
   end

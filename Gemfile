@@ -21,6 +21,7 @@ gem 'capistrano'
 gem 'devise'
 gem "jquery-rails", '1.0.1'
 gem 'formtastic'
+gem 'will_paginate', "~> 3.0.pre2"
 
 
 
