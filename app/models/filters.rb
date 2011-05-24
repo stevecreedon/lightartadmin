@@ -32,12 +32,6 @@ class Filters
     eq_params.merge(gt_or_eq_params)
   end
   
-  def query_string
-    filtered_params.collect do |key, value|
-      "#{key}=#{value}"
-    end.join("&")
-  end
-  
   param :has_spent, :cc, :pr
   param :in_the_last => :gt_or_eq
   

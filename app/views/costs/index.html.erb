@@ -1,4 +1,4 @@
-<div class="paginator"><%= will_paginate @costs %></div>
+<div class="paginator"><%= will_paginate @costs, @filters.filtered_params %></div>
 
 <table>
   <tr>
