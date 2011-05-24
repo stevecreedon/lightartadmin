@@ -42,6 +42,8 @@
 <% end %>
 </table>
 
+<%= will_paginate @costs %>
+
 <br />
 
 <%= link_to image_tag('document_add.png', :title => 'create a new one'), new_cost_path %>
