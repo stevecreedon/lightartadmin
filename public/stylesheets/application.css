@@ -83,5 +83,19 @@ a > img{
 	color: white;
 }
 
+.paginator{
+	text-align: center;
+	background-color: #FC0361;
+	padding-top: 10px;
+	padding-bottom: 10px;
+    margin-bottom: 10px;
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+}
+
+.paginator a {
+	color: white;
+}
+
 
 
