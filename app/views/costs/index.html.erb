@@ -1,4 +1,4 @@
-<div class="paginator"><%= link_to image_tag('document_add.png', :title => 'create a new one'), new_cost_path %></div>
+<div class="paginator"><%= will_paginate @costs %></div>
 
 <table>
   <tr>
@@ -44,9 +44,9 @@
 <% end %>
 </table>
 
-<%= will_paginate @costs %>
+<div class="paginator"><%= will_paginate @costs %></div>
 
 <br />
 
-<div class="paginator"><%= link_to image_tag('document_add.png', :title => 'create a new one'), new_cost_path %></div>
+<%= link_to image_tag('document_add.png', :title => 'create a new one'), new_cost_path %>
 
