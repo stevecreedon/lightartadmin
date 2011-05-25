@@ -1,30 +1,14 @@
 class SqlBuilder
   attr_accessor :snippet, :args
   
+  COMPARATORS = {:eq => "=", :gt_or_eq => ">=", :lt_or_eq => "<="}
+  
   @@map = {:has_spent => :user_id,
            :in_the_last => :payment_date,
            :cc => :cost_centre_id,
-           :pr => :project_id}
-
-  def initialize(sql_params={})
-    self.snippet = []
-    self.args = []
-  end
+           :pr => :project_id,
+           :doh => :user_id}
   
-  def eq(args)
-    apply_args(args, "=")
-    self
-  end
-  
-  def gt_or_eq(args)
-     apply_args(args, ">=")
-     self
-  end
-  
-  def to_a
-    return [snippet.join(" AND ")] + args
-  end
- 
   def self.map(args)
     @@map.merge(args)
   end
@@ -34,9 +18,31 @@ class SqlBuilder
       :pr => :project_id, 
       :has_spent => :user_id
   
+  
+
+  def initialize(sql_params={})
+    self.snippet = []
+    self.args = []
+  end
+  
+  def method_missing(mefod, *args)
+    if COMPARATORS.has_key?(mefod)
+      apply_args(args.first, COMPARATORS[mefod])
+      return self
+    end
+    super
+  end
+ 
+  def to_a
+    puts "snippet: #{self.snippet.inspect} args: #{self.args.inspect}"
+    return [snippet.join(" AND ")] + args
+  end
+ 
+  
+  
   def apply_args(args, comparator)
      args.each_key do |key|
-        raise "unknown key #{key}" unless args.has_key?(key)
+        raise "unknown key #{key}" unless @@map.has_key?(key)
         unless args[key].blank?
           self.snippet << "#{@@map[key]} #{comparator} ?"
           self.args << args[key]
