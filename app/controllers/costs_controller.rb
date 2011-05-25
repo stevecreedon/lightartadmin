@@ -3,8 +3,8 @@ class CostsController < ApplicationController
   # GET /costs.xml
   def index
     
-    @filters = Filters.new(params)
-    @costs = Cost.where(@filters.sql.to_a).paginate(:page => (params[:page] || 1), :per_page => (params[:per_page] || 10))
+    @filters = CostFilters.new(params)
+    @costs = Cost.where(@filters.sql(:cost_sql_builder).to_a).paginate(:page => (params[:page] || 1), :per_page => (params[:per_page] || 10))
 
     respond_to do |format|
       format.html # index.html.erb

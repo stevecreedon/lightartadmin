@@ -3,7 +3,7 @@ class Filters
   @@filters = {}
   
   def initialize(params)
-    
+    puts @@filters.inspect
     @@filters.each_key do |comparator|
       @@filters[comparator].each do |attribute|
         #create an array of e.g. @eq = {:cc => 5, :pr => 66}
@@ -13,8 +13,8 @@ class Filters
   
   end
   
-  def sql
-    sql = ::SqlBuilder.new
+  def sql(clazz)
+    sql = clazz.to_s.camelize.constantize.new
     ::SqlBuilder::COMPARATORS.each_key do |comparator|
       params = get_comparator_hash(comparator)
       sql.send(comparator, params) if params
@@ -31,14 +31,15 @@ class Filters
     filtered_params
   end
   
-  protected
-  
-  def self.param(*attributes)
-    attributes.each do |attribute|
-      comp = param_comparator(attribute)
-      @@filters[comp] ||= []
-      @@filters[comp] << param_name(attribute)
+  def self.method_missing(mefod, *args)
+    if SqlBuilder::COMPARATORS.has_key?(mefod)
+      args.each do |arg|
+        @@filters[mefod] ||= []
+        @@filters[mefod] << arg
+      end
+      return
     end
+    super
   end
   
   private 
@@ -46,17 +47,7 @@ class Filters
   def method_to_instance_sym(mefod)
     "@#{mefod.to_s}".to_sym
   end
-  
-  def self.param_comparator(arg)
-    return :eq if arg.is_a?(Symbol)
-    return arg.values.first if arg.is_a?(Hash)
-  end
-  
-  def self.param_name(arg)
-    return arg if arg.is_a?(Symbol)
-    return arg.keys.first if arg.is_a?(Hash)
-  end
-  
+   
   def get_or_create_comparator_hash(comparator)
     #e.g. creates @eq = {} or returns the hash @eq if it exists..
     instance_sym = method_to_instance_sym(comparator)
@@ -69,8 +60,6 @@ class Filters
     instance_variable_get(instance_sym)
   end
   
-  param :has_spent, :cc, :pr
-  param :in_the_last => :gt_or_eq
-  param :doh => :lt_or_eq
+  
   
 end

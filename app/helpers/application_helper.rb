@@ -40,7 +40,7 @@ module ApplicationHelper
   end
   
   def total_for_user(user_id)
-    sql = SqlBuilder.new
+    sql = CostSqlBuilder.new
     sql.eq(:has_spent => params[:has_spent])
     sql.gt_or_eq(:in_the_last => Date.from(params[:in_the_last].to_i))
     
@@ -48,7 +48,7 @@ module ApplicationHelper
   end
   
   def total_costs_by_cost_centre(cost_centre)
-    sql = SqlBuilder.new
+    sql = CostSqlBuilder.new
     sql.eq(:has_spent => params[:has_spent], :cc => cost_centre.id)
     sql.gt_or_eq(:in_the_last => Date.from(params[:in_the_last].to_i))
     
@@ -56,7 +56,7 @@ module ApplicationHelper
   end
   
   def total_costs_by_project(project)
-     sql = SqlBuilder.new
+     sql = CostSqlBuilder.new
      sql.eq(:has_spent => params[:has_spent], :pr => project.id)
      sql.gt_or_eq(:in_the_last => Date.from(params[:in_the_last].to_i))
 

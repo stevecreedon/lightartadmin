@@ -3,23 +3,13 @@ class SqlBuilder
   
   COMPARATORS = {:eq => "=", :gt_or_eq => ">=", :lt_or_eq => "<="}
   
-  @@map = {:has_spent => :user_id,
-           :in_the_last => :payment_date,
-           :cc => :cost_centre_id,
-           :pr => :project_id}
+  @@map_to_cols = {}
   
   def self.map(args)
-    @@map.merge(args)
+    @@map_to_cols.merge!(args)
   end
   
-  map :in_the_last => :user_id, 
-      :cc => :cost_centre_id, 
-      :pr => :project_id, 
-      :has_spent => :user_id 
-  
-  
-
-  def initialize(sql_params={})
+  def initialize
     self.snippet = []
     self.args = []
   end
@@ -33,17 +23,14 @@ class SqlBuilder
   end
  
   def to_a
-    puts "snippet: #{self.snippet.inspect} args: #{self.args.inspect}"
     return [snippet.join(" AND ")] + args
   end
  
-  
-  
   def apply_args(args, comparator)
      args.each_key do |key|
-        raise "unknown key #{key}" unless @@map.has_key?(key)
+        raise "unknown key #{key}" unless @@map_to_cols.has_key?(key)
         unless args[key].blank?
-          self.snippet << "#{@@map[key]} #{comparator} ?"
+          self.snippet << "#{@@map_to_cols[key]} #{comparator} ?"
           self.args << args[key]
         end 
       end
