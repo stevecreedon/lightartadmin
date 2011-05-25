@@ -6,8 +6,7 @@ class SqlBuilder
   @@map = {:has_spent => :user_id,
            :in_the_last => :payment_date,
            :cc => :cost_centre_id,
-           :pr => :project_id,
-           :doh => :user_id}
+           :pr => :project_id}
   
   def self.map(args)
     @@map.merge(args)
@@ -16,7 +15,7 @@ class SqlBuilder
   map :in_the_last => :user_id, 
       :cc => :cost_centre_id, 
       :pr => :project_id, 
-      :has_spent => :user_id
+      :has_spent => :user_id 
   
   
 

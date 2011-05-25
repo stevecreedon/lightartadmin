@@ -49,16 +49,16 @@ module ApplicationHelper
   
   def total_costs_by_cost_centre(cost_centre)
     sql = SqlBuilder.new
-    sql.eq(:user_id => params[:has_spent], :cc => cost_centre.id)
-    sql.gt_or_eq(:payment_date => Date.from(params[:in_the_last].to_i))
+    sql.eq(:has_spent => params[:has_spent], :cc => cost_centre.id)
+    sql.gt_or_eq(:in_the_last => Date.from(params[:in_the_last].to_i))
     
     Cost.where(sql.to_a).sum(:amount)
   end
   
   def total_costs_by_project(project)
      sql = SqlBuilder.new
-     sql.eq(:user_id => params[:has_spent], :pr => project.id)
-     sql.gt_or_eq(:payment_date => Date.from(params[:in_the_last].to_i))
+     sql.eq(:has_spent => params[:has_spent], :pr => project.id)
+     sql.gt_or_eq(:in_the_last => Date.from(params[:in_the_last].to_i))
 
      Cost.where(sql.to_a).sum(:amount)
   end
