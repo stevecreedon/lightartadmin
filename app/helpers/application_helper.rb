@@ -20,16 +20,6 @@ module ApplicationHelper
     
   end
   
-  def f(name)
-    return nil unless params[:f] && params[:f][name]
-    params[:f][name]
-  end
-  
-  def p(param)
-    return nil unless params[:p] && params[:p][name]
-    params[:p][name]
-  end
-  
   def vat_inclusives
     [[nil,nil],['includes VAT',true],['plus VAT', false]]
   end
@@ -65,7 +55,6 @@ module ApplicationHelper
   
   def growlify(obj)
      return obj if obj.is_a?(String)
-     puts obj.join("</li><li>")
      return obj.join("</li><li>") if obj.is_a?(Array)
   end
   

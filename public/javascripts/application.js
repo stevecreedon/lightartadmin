@@ -7,8 +7,8 @@ $(document).ready(function(){
 		$("#" + form).submit();
 	});
 	
-	$("#f_in_the_last").change(function(){$("#filter_me").submit()});
-	$("#f_has_spent").change(function(){$("#filter_me").submit()});
+	$("#in_the_last").change(function(){$("#filter_me").submit()});
+	$("#has_spent").change(function(){$("#filter_me").submit()});
 	
 	if($('#growl').length > 0){ growl($('#growl').html())}
 

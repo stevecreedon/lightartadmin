@@ -1,11 +1,11 @@
 <% form_tag root_path, :id => 'filter_me' do %>
-	<%= select_tag('f[in_the_last]', in_the_last_options(f(:in_the_last))) %>
+	<%= select_tag(:in_the_last, in_the_last_options) %>
 	&nbsp;
-	<%= select_tag('f[has_spent]', users_options(f(:has_spent))) %>
+	<%= select_tag(:has_spent, users_options) %>
 <% end %>
 
 <h4><%= user_has_spent %></h4>
-<%= number_to_currency(total_for_user(f(:user_id)), :unit => '&pound;') %>
+<%= number_to_currency(total_for_user(params[:has_spent]), :unit => '&pound;') %>
 
 <h4>Cost Centres</h4>
 <% CostCentre.all.each do |cost_centre| %>
