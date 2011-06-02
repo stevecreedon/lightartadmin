@@ -12,12 +12,10 @@
 	<div>
 	<%= cost_centre.name %>&nbsp;
 	<%= number_to_currency(total_costs_by_cost_centre(cost_centre), :unit => '&pound;') %>&nbsp;
-	<%= form_tag costs_path, :method => "GET", :id => "list_cost_centre_#{cost_centre.id}", :class => 'submit_form' do %>
-		<%= hidden_field_tag(:has_spent, params[:has_spent]) %>&nbsp;
-		<%= hidden_field_tag(:in_the_last, params[:in_the_last]) %>&nbsp;
-		<%= hidden_field_tag(:cc, cost_centre.id) %>
-		<%= link_to "view",  "#", :class => "submit_form", :role => "list_cost_centre_#{cost_centre.id}" %>
-	<% end %>
+    <%= link_to "view", costs_path(:has_spent => params[:has_spent], 
+									:in_the_last => params[:in_the_last], 
+									:cc => cost_centre.id) %>
+
 	</div>
 <% end %>
 
@@ -25,12 +23,9 @@
 <% Project.all.each do |project| %>
 	<div><%= project.name %>&nbsp;
 		<%= number_to_currency(total_costs_by_project(project), :unit => '&pound;') %>
-		<%= form_tag costs_path, :method => "GET", :id => "list_project_#{project.id}", :class => 'submit_form' do %>
-			<%= hidden_field_tag(:has_spent, params[:has_spent]) %>&nbsp;
-			<%= hidden_field_tag(:in_the_last, params[:in_the_last]) %>&nbsp;
-			<%= hidden_field_tag(:pr, project.id) %>
-			<%= link_to "view",  "#", :class => "submit_form", :role => "list_project_#{project.id}" %>
-		<% end %>
+	    <%= link_to "view", costs_path(:has_spent => params[:has_spent], 
+										:in_the_last => params[:in_the_last], 
+										:pr => project.id) %>
 	</div>
 <% end %>
 
